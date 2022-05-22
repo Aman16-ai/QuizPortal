@@ -27,3 +27,5 @@ const quizSchema = new moongose.Schema({
 
     ] 
 })
+
+module.exports = moongose.model("quiz",quizSchema)
