@@ -1,0 +1,70 @@
+body {
+    background-color: #845EC2;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-container {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.right-container {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#quizImg {
+    width: 29rem;
+    margin-bottom: 120px;
+}
+
+#heading {
+    font-weight: bolder;
+    font-size: 3rem;
+}
+.typoHeading{
+    color: white;
+}
+#subheading {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+/* #dashboardbtn {
+    width: 10px;
+} */
+
+#playBtn {
+    background-color: #D65DB1;
+}
+#createBtn {
+    background-color: #FF6F91;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.btns {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    
+}
+.buttons {
+    width: 10rem;
+    height: 3rem;
+}
+#dashboardbtn {
+    background-color: #FF9671;
+}
+.links {
+    color: white;
+    text-decoration: none;
+}
