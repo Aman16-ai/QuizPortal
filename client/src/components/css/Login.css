@@ -1,0 +1,42 @@
+
+.form-container {
+    width: 25rem;
+    height: 28rem;
+    border:  2px solid white;
+    background-color: white;
+    margin: auto;
+    margin-top: 4rem;
+    border-radius: 1.2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#loginTypo {
+    color: #845EC2;
+    margin-top: 30px;
+}
+.textinput {
+    width: 20rem;
+    align-self: center;
+}
+
+#forget-pass-typo {
+    color: #845EC2;
+    align-self: flex-end;
+    margin-right: 40px;
+    margin-top: 10px;
+    font-size: small;
+}
+
+#submitBtn {
+    background-color: #845EC2;
+    width: 20rem;
+    height: 45px;
+    margin-top: 20px;
+    align-self: center;
+}
+.signup-link {
+    margin-top: auto;
+    align-self: center;
+    margin-bottom: 20px;
+}

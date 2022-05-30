@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
         }
         const authtoken = jwt.sign(data, JWT_SECERT)
         const success = "login successfully"
-        return res.json({ success, authtoken })
+        return res.status(200).json({ success, authtoken })
     }
 
     catch (err) {

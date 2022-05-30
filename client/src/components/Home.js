@@ -17,12 +17,26 @@ export default function Home() {
                 </Typography>
 
                 <div className="btns">
-                    <Button className="buttons"  id="playBtn" variant="contained"><Link className="links" to="/login">Play Quiz</Link></Button>
-                    <Button className="buttons"  id="createBtn" variant="contained"><Link className="links" to="/login">Create Quiz</Link></Button>
-                <Button 
-                className="buttons"
-                id="dashboardbtn"
-                variant="contained"><Link className="links" to="/login">DashBoard</Link></Button>
+                    {
+                        
+                        localStorage.getItem("quiz-token") ?<>
+                        
+                        <Button className="buttons"  id="playBtn" variant="contained"><Link className="links" to="/playQuiz">Play Quiz</Link></Button>
+                        <Button className="buttons"  id="createBtn" variant="contained"><Link className="links" to="/createQuiz">Create Quiz</Link></Button>
+                        
+                        </>:
+                        
+                        <>
+                            <Button className="buttons"  id="playBtn" variant="contained"><Link className="links" to="/login">login</Link></Button>
+                            <Button className="buttons"  id="createBtn" variant="contained"><Link className="links" to="/register">Register</Link></Button>
+                        </>
+                    }
+                {
+                    localStorage.getItem("quiz-token")?<Button 
+                    className="buttons"
+                    id="dashboardbtn"
+                    variant="contained"><Link className="links" to="/DashBoard">DashBoard</Link></Button>:null
+                }
                 </div>
             </div>
             <div className="right-container">
