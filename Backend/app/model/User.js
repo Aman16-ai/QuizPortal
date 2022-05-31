@@ -1,9 +1,12 @@
 const moongose = require('mongoose')
 
 const userSchema = new moongose.Schema({
-    name:{
+    firstName:{
         type:String,
         require :true
+    },
+    lastName: {
+        type:String,
     },
     email: {
         type:String,
