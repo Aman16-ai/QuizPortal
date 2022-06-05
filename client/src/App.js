@@ -4,9 +4,10 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import CreateQuiz from './components/CreateQuiz';
-import PlayQuiz from './components/PlayQuiz';
+import EnterInQuiz from './components/PlayQuiz/EnterInQuiz';
 import DashBoard from './components/DashBoard';
 import UnAuthorized from './components/UnAuthorized';
+import Play from './components/PlayQuiz/Play';
 
 
 function App() {
@@ -21,8 +22,9 @@ function App() {
           {
             localStorage.getItem("quiz-token") ? <>
               <Route path="/createQuiz" element={<CreateQuiz />} />
-              <Route path="/playQuiz" element={<PlayQuiz />} />
+              <Route path="/playQuiz" element={<EnterInQuiz />} />
               <Route path="/DashBoard" element={<DashBoard />} />
+              <Route path="/quiz/:id" element={<Play />} />
             </> :
             <>
                <Route path="/createQuiz" element={<UnAuthorized />} />
