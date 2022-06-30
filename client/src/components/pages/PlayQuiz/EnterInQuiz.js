@@ -2,7 +2,7 @@ import { Button, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import "./EnterInQuiz.css"
+import "./css/EnterInQuiz.css"
 export default function PlayQuiz() {
   const [quizId, setQuizId] = useState("")
   return (
