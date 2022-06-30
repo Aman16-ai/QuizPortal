@@ -1,0 +1,15 @@
+.container {
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    font-family: 'Ubuntu', sans-serif;
+    
+}
+.quiz-card {
+    width: 40vw;
+    height: 90vh;
+    border-radius: 2rem;
+    background-color: #1b263b;
+
+    
+}
+
