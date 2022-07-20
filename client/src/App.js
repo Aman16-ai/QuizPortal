@@ -1,13 +1,13 @@
 import './App.css';
 import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom'
-import Home from './components/Home';
-import Login from './components/pages/Authentication/Login';
-import Signup from './components/pages/Authentication/Signup';
-import CreateQuiz from './components/CreateQuiz';
-import EnterInQuiz from './components/pages/PlayQuiz/EnterInQuiz';
-import DashBoard from './components/DashBoard';
-import UnAuthorized from './components/UnAuthorized';
-import Play from './components/pages/PlayQuiz/Play';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import CreateQuiz from './pages/CreateQuiz';
+import EnterInQuiz from './pages/EnterInQuiz';
+import DashBoard from './pages/DashBoard';
+import UnAuthorized from './pages/UnAuthorized';
+import Play from './pages/Play';
 
 
 function App() {

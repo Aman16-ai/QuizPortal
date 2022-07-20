@@ -1,19 +1,30 @@
 import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./css/Card.css"
 import { useState } from 'react'
 export default function Card(props) {
 
     const [userAnswer,setUserAnswer] = useState("")
+    const [userAnswerInfo,setUserAnswerInfo] = useState({}) 
     const handleAnswerClick = (e) => {
         setUserAnswer(e.target.value)
+        setUserAnswerInfo({...userAnswerInfo,[props.data._id]:e.target.value})
+    
     }
 
-    const handleNextBtn = () => {
-        console.log(props.index)
-        props.setIndex(prev => prev + 1)
-        console.log(props.index)
-    }
+    useEffect(()=> {
+        if(props.data._id in userAnswerInfo) {
+            setUserAnswer(userAnswerInfo[props.data._id])
+        }
+    })
+    useEffect(()=> {
+        if(userAnswer !== "") {
+            if(userAnswer.trim() == props.data.correctAnswer.trim()) {
+                props.setScore(props.score + 1)
+            }
+        }
+    },[userAnswer])
+
     return (
         <div>
             <div className="quiz-card">
@@ -38,10 +49,7 @@ export default function Card(props) {
                     </FormControl>
                 </div>
 
-                <div className="actionBtnContainer">
-                    <Button id="action-btn" variant="contained">Previous</Button>
-                    <Button onClick={handleNextBtn} id='action-btn' variant="contained">Next</Button>
-                </div>
+              
             </div>
 
         </div>

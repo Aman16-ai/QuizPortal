@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { Email, Key, FirstPage, LastPage } from '@mui/icons-material'
 import InputAdornment from '@mui/material/InputAdornment'
 import { Link, useNavigate } from 'react-router-dom'
-import END_POINT from '../../../config/Api'
+import END_POINT from '../config/Api'
 export default function Login() {
 
   const negivate = useNavigate()
