@@ -1,0 +1,39 @@
+.container {
+    background-color: #4158D0;
+    background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    font-family: 'Ubuntu', sans-serif;
+    
+}
+
+
+.question-container {
+    margin-top: 100px;
+    border-radius: 2rem;
+    background-color: #1b263b;
+
+  
+}
+
+/* .actionBtnContainer {
+    width: 100%;
+    display: flex;
+    justify-content:center;
+} */
+
+#previous-action-btn {
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    background-color: white;
+    color: black;
+    margin-left: 70px;
+    margin-bottom: 30px;
+}
+#next-action-btn {
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    background-color: white;
+    color: black;
+    margin-bottom: 30px;
+}
