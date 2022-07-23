@@ -11,7 +11,7 @@ export default function PlayQuiz() {
           <Typography id="quiz-typo" variant='h4'>Play Quiz</Typography>
             <div className="form-container">
             <TextField value={quizId} onChange={(e)=>setQuizId(e.target.value)} label="Enter Quiz ID" variant='outlined'/>
-            <Button id="btn" variant="contained"><Link id="link" to={`/quiz/${quizId}`}>Play</Link></Button>
+            <Button id="btn" variant="contained"><Link id="link" to={`/quiz?quiz_id=${quizId}`}>Play</Link></Button>
             </div>
         </div>
 

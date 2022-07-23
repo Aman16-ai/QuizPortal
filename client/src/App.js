@@ -24,7 +24,7 @@ function App() {
               <Route path="/createQuiz" element={<CreateQuiz />} />
               <Route path="/playQuiz" element={<EnterInQuiz />} />
               <Route path="/DashBoard" element={<DashBoard />} />
-              <Route path="/quiz/:id" element={<Play />} />
+              <Route path="/quiz" element={<Play />} />
             </> :
             <>
                <Route path="/createQuiz" element={<UnAuthorized />} />

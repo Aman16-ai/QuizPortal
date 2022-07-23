@@ -1,29 +1,28 @@
-import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from '@mui/material'
+import { Button, FormControl, FormControlLabel, Radio, RadioGroup, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import "./css/Card.css"
 import { useState } from 'react'
 export default function Card(props) {
 
     const [userAnswer,setUserAnswer] = useState("")
-    const [userAnswerInfo,setUserAnswerInfo] = useState({}) 
+    
     const handleAnswerClick = (e) => {
         setUserAnswer(e.target.value)
-        setUserAnswerInfo({...userAnswerInfo,[props.data._id]:e.target.value})
+        props.setUserAnswerInfo({...props.userAnswerInfo,[props.data._id]:{"userAnswer":e.target.value,"correctAnswer":props.data.correctAnswer,"attempted":true}})
     
     }
 
     useEffect(()=> {
-        if(props.data._id in userAnswerInfo) {
-            setUserAnswer(userAnswerInfo[props.data._id])
+       
+        if(props.data._id in props.userAnswerInfo) {
+            setUserAnswer(props.userAnswerInfo[props.data._id].userAnswer)
         }
-    })
+        console.log(props.userAnswerInfo)
+    },[props.data])
+
     useEffect(()=> {
-        if(userAnswer !== "") {
-            if(userAnswer.trim() == props.data.correctAnswer.trim()) {
-                props.setScore(props.score + 1)
-            }
-        }
-    },[userAnswer])
+      
+    },[])
 
     return (
         <div>
