@@ -1,0 +1,18 @@
+.timmer-container {
+    width: 35vw;
+    height: 30vh;
+    background-color: #1b263b; 
+    border-radius: 2rem;
+
+}
+
+#timmer-title {
+    text-align: center;
+    color: white;
+}
+#timmer-info {
+    color: white;
+    text-align: center;
+    font-size: 3rem;
+    margin: auto;
+}
