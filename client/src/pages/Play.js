@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import END_POINT from '../config/Api'
 import Question from '../components/Question'
+import Timmer from '../components/Timmer'
 import "./css/play.css"
 
 export default function Play() {
@@ -11,9 +12,10 @@ export default function Play() {
     const [isAllQuestionsDone, setIsAllQuestionsDone] = useState(false)
     const [questionAndAnswerData, setquestionAndAnswerData] = useState({})
     const [index, setIndex] = useState(0)
-    const [score,setScore] = useState(0) 
+    const [score, setScore] = useState(0)
+    const [istimmerComplete,setisTimmerComplete] = useState(false)
 
-    const [userAnswerInfo,setUserAnswerInfo] = useState({}) 
+    const [userAnswerInfo, setUserAnswerInfo] = useState({})
     /*
         for recording the response of the user for an question
         userAnswerInfo = {
@@ -43,47 +45,64 @@ export default function Play() {
     }, [])
 
     useEffect(() => {
-        if(quiz.questionsAndAnswers !== undefined) {
+        if (quiz.questionsAndAnswers !== undefined) {
             console.log(`index ${index} and length ${quiz.questionsAndAnswers.length} and done ${isAllQuestionsDone}`)
-            if(index >= 0 && index < quiz.questionsAndAnswers.length) {
+            if (index >= 0 && index < quiz.questionsAndAnswers.length) {
                 setquestionAndAnswerData(quiz.questionsAndAnswers[index])
             }
-            index===quiz.questionsAndAnswers.length-1?setIsAllQuestionsDone(true):setIsAllQuestionsDone(false)
-            
+            index === quiz.questionsAndAnswers.length - 1 ? setIsAllQuestionsDone(true) : setIsAllQuestionsDone(false)
+
         }
     }, [index])
 
-   
-
     useEffect(()=> {
-        console.log("Current score of user is "+score)
-    },[score])
+        console.log("calling")
+        console.log(istimmerComplete)
+        if(istimmerComplete == true) {
+            alert("quiz over")
+        }
+    },[istimmerComplete])
 
-    const handleNextBtn = ()=> {
+    useEffect(() => {
+        console.log("Current score of user is " + score)
+    }, [score])
+
+    const handleNextBtn = () => {
         setIndex(prev => prev + 1)
     }
-    const handlePrevBtn = ()=> {
+    const handlePrevBtn = () => {
         setIndex(prev => prev - 1)
     }
 
+
     const calculateScore = () => {
         quiz?.questionsAndAnswers.forEach(e => {
-            if(e._id in userAnswerInfo && userAnswerInfo[e._id].userAnswer === userAnswerInfo[e._id].correctAnswer) {
+            if (e._id in userAnswerInfo && userAnswerInfo[e._id].userAnswer === userAnswerInfo[e._id].correctAnswer) {
                 setScore(prev => prev + 1)
             }
         });
     }
-    const handleSubmitBtn = ()=> {
+    const handleSubmitBtn = () => {
         console.log("submit btn")
         console.log(userAnswerInfo)
         calculateScore()
     }
     return (
-        <div className='container'>
-            <div className="question-container">
-            <Question userAnswerInfo={userAnswerInfo} setUserAnswerInfo={setUserAnswerInfo} score={score} setScore={setScore} data={questionAndAnswerData} />
-            <Button className="actionbtn" onClick={handlePrevBtn} id="previous-action-btn" variant="contained">Previous</Button>
-            {isAllQuestionsDone?<Button className="actionbtn" id='next-action-btn' onClick={handleSubmitBtn} variant="contained">Submit</Button>:<Button className="actionbtn" onClick={handleNextBtn} id='next-action-btn' variant="contained">Next</Button>}
+        <div className='play-container'>
+            <div className="left">
+                <div className="question-container">
+                    <Question userAnswerInfo={userAnswerInfo} setUserAnswerInfo={setUserAnswerInfo} score={score} setScore={setScore} data={questionAndAnswerData} />
+                    <Button className="actionbtn" onClick={handlePrevBtn} id="previous-action-btn" variant="contained">Previous</Button>
+                    {isAllQuestionsDone ? <Button className="actionbtn" id='next-action-btn' onClick={handleSubmitBtn} variant="contained">Submit</Button> : <Button className="actionbtn" onClick={handleNextBtn} id='next-action-btn' variant="contained">Next</Button>}
+                </div>
+            </div>
+            <div className="right">
+                <div className="right-up">
+                    <Timmer min={0} sec={10} istimmerComplete={istimmerComplete} setisTimmerComplete={setisTimmerComplete}/>
+                </div>
+                <div className="right-down">
+
+                </div>
             </div>
         </div>
 
