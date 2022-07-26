@@ -1,10 +1,11 @@
-require("dotenv").config();
+const dotenv = require("dotenv")
 const express = require('express')
 const app = express()
 const router = require('./app/router')
-const port = 5000
 const connectDB = require('./db')
 const cors = require("cors")
+
+dotenv.config()
 connectDB();
 
 app.use(express.json())
@@ -12,13 +13,10 @@ app.use(cors())
 
 app.use('/api',router)
 app.get('/',(req,res)=> {
-    return res.json({"message" : "Home"})
+    return res.json({"message" : "Welcome to quiz portal backend developed by Aman saxena"})
 })
-app.get('/test',(req,res)=> {
-    console.log(req.query)
-    console.log("quiz_id" in req.query)
-    return res.json({test:"testing"})
-})
-app.listen(port,()=> {
-    console.log(`Listing at ${port}`)
+
+const PORT = process.env.PORT || 5000
+app.listen(PORT,()=> {
+    console.log(`Listing at ${PORT}`)
 })
