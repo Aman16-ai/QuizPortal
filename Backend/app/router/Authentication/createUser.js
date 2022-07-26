@@ -1,7 +1,8 @@
 const User = require("../../model/User")
 const bcrypt = require("bcrypt")
 const jwt= require("jsonwebtoken")
-const JWT_SECERT = "quizauth#@!23$"
+// const JWT_SECERT = "quizauth#@!23$"
+const JWT_SECERT = process.env.JWT_SECERT
 module.exports = async(req,res) => {
    try {
     const existingUser = await User.findOne({email:req.body.email});
