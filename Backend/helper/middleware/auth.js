@@ -1,12 +1,19 @@
 const jwt = require("jsonwebtoken")
-const JWT_SECERT = "quizauth#@!23$"
+
+
+function getTokenFromBearer(bearer) {
+    const token = bearer.split(" ")[1]
+    return token
+}
+
 
 function authMiddleware(req,res,next) {
-    const token = req.header('auth-token');
+    const bearer = req.headers.authorization
+    const token = getTokenFromBearer(bearer)
     if(!token) {
         return res.json({tokenError:"token is not valid"});
     }
-    const data = jwt.verify(token,JWT_SECERT);
+    const data = jwt.verify(token, process.env.JWT_SECERT);
     req.user = data.user.user
     next();
 }
