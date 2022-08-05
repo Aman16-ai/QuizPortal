@@ -23,7 +23,7 @@ module.exports = async(req,res) => {
             id : user.id
         }
     };
-    const authtoken = jwt.sign(data,JWT_SECERT)
+    const authtoken = jwt.sign(data,process.env.JWT_SECERT)
     console.log(authtoken)
     const success = "Registered successfully"
     return res.json({success,authtoken})

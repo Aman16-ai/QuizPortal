@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const responseSchema = new mongoose.Schema({
     quiz :{
         type : mongoose.Schema.Types.ObjectId,
-        ref : "Quiz"
+        ref : "quiz"
     },
 
     playedBy : {

@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
                 user: user.id
             }
         }
-        const authtoken = jwt.sign(data, JWT_SECERT)
+        const authtoken = jwt.sign(data,  process.env.JWT_SECERT)
         const success = "login successfully"
         return res.status(200).json({ success, authtoken })
     }
