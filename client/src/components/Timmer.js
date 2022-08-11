@@ -22,7 +22,6 @@ export default function Timmer(props) {
     },[])
     useEffect(()=> {
         if(min == 0 && sec == 0) {
-            console.log("calling props")
             props.setisTimmerComplete(true)
             clearInterval(intervalId)
         }
