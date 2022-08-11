@@ -14,7 +14,7 @@ function authMiddleware(req,res,next) {
         return res.json({tokenError:"token is not valid"});
     }
     const data = jwt.verify(token, process.env.JWT_SECERT);
-    req.user = data.user.user
+    req.user = data.user.id
     next();
 }
 module.exports = authMiddleware;
