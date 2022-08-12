@@ -1,0 +1,27 @@
+
+.create-container {
+    margin:15px;
+    width: 600px;
+    height: auto;
+    background-color: white;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#title-type {
+    font-family: 'Ubuntu', sans-serif;
+    margin-top: 20px;
+}
+
+.text-in {
+    width:400px;
+}
+
+.outter-container {
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+}
