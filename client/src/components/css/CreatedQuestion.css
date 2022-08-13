@@ -1,0 +1,9 @@
+.question-box {
+    width: 30vw;
+    height: 53vh;
+    padding: 20px;
+    background-color: #1b263b;
+    color: white;
+    margin: 10px;
+    border-radius: 0.5rem;
+}
