@@ -19,10 +19,10 @@ export default function CreateQuiz() {
 
   const [userQuizData,setUserQuizData] = useState({
     question:"",
-    option1:"",
-    option2:"",
-    option3:"",
-    option4:"",
+    answer1:"",
+    answer2:"",
+    answer3:"",
+    answer4:"",
     correctAnswer:""
   })
   const fetchAllCategories = async () => {
@@ -216,8 +216,8 @@ export default function CreateQuiz() {
         <Stack spacing={5}>
         <div className="questions-container">
           {
-            questionAndAnswers.map((e)=> {
-              return <CreatedQuestion questionData={e}/>
+            questionAndAnswers.map((e,i)=> {
+              return <CreatedQuestion key={i} questionData={e}/>
             })
           }
           
