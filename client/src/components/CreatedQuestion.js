@@ -3,6 +3,10 @@ import React from 'react'
 import "./css/CreatedQuestion.css"
 export default function CreatedQuestion(props) {
     const {question,answer1,answer2,answer3,answer4,correctAnswer} = props?.questionData
+
+    const handleUpdateBtn = ()=> {
+        props.handleUpdateQuestion({...props.questionData,"idx":props.idx})
+    }
   return (
     <div className='question-box'>
         <Stack>
@@ -27,7 +31,7 @@ export default function CreatedQuestion(props) {
                 correct: {correctAnswer}
             </Typography>
             <Stack style={{marginTop:"40px"}} direction={"row"} spaceing={4}>
-                <Button style={{backgroundColor:"white",color:"black"}} variant='contained'>Update</Button>
+                <Button style={{backgroundColor:"white",color:"black"}} onClick={handleUpdateBtn} variant='contained'>Update</Button>
                 <Button style={{marginLeft:"10px" ,backgroundColor:"white",color:"black"}} variant='contained'>Delete</Button>
             </Stack>
         </Stack>

@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Stack, TextField, Typography } from '@mui/material'
+import { Button, CircularProgress, Modal, Stack, TextField, Typography } from '@mui/material'
 import React, { useEffect } from 'react'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -14,10 +14,22 @@ export default function CreateQuiz() {
   const [userCategory,setUserCategory] = useState("")
   const [loading,setLoading] = useState(false)
 
+  const [openModal,setOpenModal] = useState(false)
+
   const [title,setTitle] = useState("")
   const [questionAndAnswers,SetQuestionAndAnswers] = useState([])
 
   const [userQuizData,setUserQuizData] = useState({
+    question:"",
+    answer1:"",
+    answer2:"",
+    answer3:"",
+    answer4:"",
+    correctAnswer:""
+  })
+
+  const [userUpdateQuizData,setUserUpdateQuizData] = useState({
+    idx:"",
     question:"",
     answer1:"",
     answer2:"",
@@ -61,38 +73,149 @@ export default function CreateQuiz() {
     )
   }
 
-  const handleUpload = async()=> {
-    const quizRequestBody = {
-      "title" :title,
-      "category":userCategory,
-      "questionsAndAnswers" : questionAndAnswers
-    }
+  const handleUpdateQuestion = (questionData) => {
+    setOpenModal(true)
+    setUserUpdateQuizData(questionData)
+  }
 
-    console.log(questionAndAnswers)
-    setLoading(true)
-    try{
-      let url = `${END_POINT}/quiz/createQuiz`;
-        const response = await fetch(url,{
-            method: 'POST',
-            headers : {
-                'Content-Type':'application/json',
-                Authorization: `Bearer ${localStorage.getItem('quiz-token')}`
-            },
-            body: JSON.stringify(quizRequestBody)
-        })
-        const data = await response.json();
-        console.log(data)
+  const handleUpload = async()=> {
+    if(title === "" || title === " ") {
+      alert("Title must not be empty");
     }
-    catch(err) {
-      console.log(err.toString())
+    else if(userCategory === "" || userCategory === " ") {
+      alert("Category must be filled");
     }
-    finally {
-      setLoading(false)
+    else if(questionAndAnswers.length === 0) {
+      alert("Please atleast one question for quiz");
+    }
+    else {
+      const quizRequestBody = {
+        "title" :title,
+        "category":userCategory,
+        "questionsAndAnswers" : questionAndAnswers
+      }
+  
+      console.log(questionAndAnswers)
+      setLoading(true)
+      try{
+        let url = `${END_POINT}/quiz/createQuiz`;
+          const response = await fetch(url,{
+              method: 'POST',
+              headers : {
+                  'Content-Type':'application/json',
+                  Authorization: `Bearer ${localStorage.getItem('quiz-token')}`
+              },
+              body: JSON.stringify(quizRequestBody)
+          })
+          const data = await response.json();
+          console.log(data)
+      }
+      catch(err) {
+        console.log(err.toString())
+      }
+      finally {
+        setLoading(false)
+      }
     }
   }
   
+  const handleModalFormDataChange = (e) => {
+    setUserUpdateQuizData({...userUpdateQuizData,[e.target.name]:e.target.value})
+  }
+
+  const handleUpdateModalBtn = ()=> {
+    const templist = questionAndAnswers
+    for(let i = 0;i<templist.length;i++) {
+      if(i === userUpdateQuizData.idx) {
+        templist[i] = userUpdateQuizData
+      }
+    }
+    SetQuestionAndAnswers(templist)
+    setOpenModal(false)
+  }
+
   return (
     <div className="outter-container">
+      <Modal
+        open={openModal}
+        aria-labelledby="modal-modal-title"
+      >
+        <div id='update-questions-modal'>
+        <Typography id="modal-modal-title" component={"h2"} variant={"h6"}>
+          Update Question
+          </Typography>
+          <div className="update-question-form">
+          <TextField
+          id='question-in'
+          className='text-in'
+          style={{marginTop:"20px"}}
+          variant='outlined'
+          label='Question'
+          name='question'
+          value={userUpdateQuizData.question}
+          onChange={handleModalFormDataChange}
+        />
+        <TextField
+          id='option1-in'
+          className='text-in'
+          style={{marginTop:"20px"}}
+          variant='outlined'
+          label='Option1'
+          name='answer1'
+          value={userUpdateQuizData.answer1}
+          onChange={handleModalFormDataChange}
+        />
+        <TextField
+          id='option2-in'
+          className='text-in'
+          style={{marginTop:"20px"}}
+          variant='outlined'
+          label='Option2'
+          name='answer2'
+          value={userUpdateQuizData.answer2}
+          onChange={handleModalFormDataChange}
+        />
+        <TextField
+          id='Option3-in'
+          className='text-in'
+          style={{marginTop:"20px"}}
+          variant='outlined'
+          label='Option3'
+          name='answer3'
+          value={userUpdateQuizData.answer3}
+          onChange={handleModalFormDataChange}
+        />
+        <TextField
+          id='Option4-in'
+          className='text-in'
+          style={{marginTop:"20px"}}
+          variant='outlined'
+          label='Option4'
+          name='answer4'
+          value={userUpdateQuizData.answer4}
+          onChange={handleModalFormDataChange}
+        />
+      <FormControl className="text-in" style={{marginTop:"20px"}}>
+        <InputLabel id="demo-simple-select-label">Choose correct answer</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={userUpdateQuizData.correctAnswer}
+          label="Choose correct answer"
+          onChange={handleModalFormDataChange}
+          name="correctAnswer"
+        >
+         <MenuItem value={userUpdateQuizData.answer1}>{userUpdateQuizData.answer1}</MenuItem>
+         <MenuItem value={userUpdateQuizData.answer2}>{userUpdateQuizData.answer2}</MenuItem>
+         <MenuItem value={userUpdateQuizData.answer3}>{userUpdateQuizData.answer3}</MenuItem>
+         <MenuItem value={userUpdateQuizData.answer4}>{userUpdateQuizData.answer4}</MenuItem>
+        </Select>
+      </FormControl>
+        <Button onClick={handleUpdateModalBtn} style={{backgroundColor:"#1b263b",marginTop:"20px"}} variant='contained'>Update</Button>
+        <Button onClick={()=>setOpenModal(false)} style={{backgroundColor:"#1b263b",marginTop:"20px",marginLeft:"10px"}} variant='contained'>Cancel</Button>
+          </div>
+        </div>
+      </Modal>
       <div className="create-container">
         <Typography id="title-typo" style={{marginTop:"20px"}} variant='h4'>
           Create Quiz
@@ -217,7 +340,7 @@ export default function CreateQuiz() {
         <div className="questions-container">
           {
             questionAndAnswers.map((e,i)=> {
-              return <CreatedQuestion key={i} questionData={e}/>
+              return <CreatedQuestion key={i} idx={i} questionData={e} handleUpdateQuestion={handleUpdateQuestion} />
             })
           }
           

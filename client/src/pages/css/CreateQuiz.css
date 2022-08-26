@@ -37,3 +37,22 @@
     align-items: center;
     overflow-y:scroll;
 }
+#update-questions-modal {
+    width: 40vw;
+    height: auto;
+    background-color: white;
+    position: absolute;
+    left: 28%;
+    top: 5%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+}
+#modal-modal-title {
+    margin-left: 70px;
+}
+
+.update-question-form {
+    margin-left: 70px;
+}
