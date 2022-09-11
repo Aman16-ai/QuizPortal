@@ -8,6 +8,7 @@ import END_POINT from '../config/Api'
 import "./css/CreateQuiz.css" 
 import { useState } from 'react'
 import CreatedQuestion from '../components/CreatedQuestion'
+import NavBar from '../components/NavBar'
 export default function CreateQuiz() {
 
   const [categories,setCategories] = useState([])
@@ -124,7 +125,7 @@ export default function CreateQuiz() {
   }
 
   const handleUpdateModalBtn = ()=> {
-    const templist = questionAndAnswers
+    const templist = [...questionAndAnswers]
     for(let i = 0;i<templist.length;i++) {
       if(i === userUpdateQuizData.idx) {
         templist[i] = userUpdateQuizData
@@ -134,7 +135,16 @@ export default function CreateQuiz() {
     setOpenModal(false)
   }
 
+  const handleDeleteQuestions = (question) => {
+    const templist = [...questionAndAnswers]
+    const newlist = templist.filter((e,i)=> {
+      if(i !== question.idx) return true
+    })
+    SetQuestionAndAnswers(newlist)
+  }
   return (
+    <div className='create-main-container' >
+     <NavBar/>
     <div className="outter-container">
       <Modal
         open={openModal}
@@ -340,7 +350,7 @@ export default function CreateQuiz() {
         <div className="questions-container">
           {
             questionAndAnswers.map((e,i)=> {
-              return <CreatedQuestion key={i} idx={i} questionData={e} handleUpdateQuestion={handleUpdateQuestion} />
+              return <CreatedQuestion key={i} idx={i} questionData={e} handleDeleteQuestions={handleDeleteQuestions} handleUpdateQuestion={handleUpdateQuestion} />
             })
           }
           
@@ -354,6 +364,7 @@ export default function CreateQuiz() {
 
           </Stack>
         </Stack>
+    </div>
     </div>
   )
 }
