@@ -7,6 +7,9 @@ export default function CreatedQuestion(props) {
     const handleUpdateBtn = ()=> {
         props.handleUpdateQuestion({...props.questionData,"idx":props.idx})
     }
+    const handleDeleteBtn = ()=> {
+        props.handleDeleteQuestions({...props.questionData,"idx":props.idx})
+    }
   return (
     <div className='question-box'>
         <Stack>
@@ -32,7 +35,7 @@ export default function CreatedQuestion(props) {
             </Typography>
             <Stack style={{marginTop:"40px"}} direction={"row"} spaceing={4}>
                 <Button style={{backgroundColor:"white",color:"black"}} onClick={handleUpdateBtn} variant='contained'>Update</Button>
-                <Button style={{marginLeft:"10px" ,backgroundColor:"white",color:"black"}} variant='contained'>Delete</Button>
+                <Button style={{marginLeft:"10px" ,backgroundColor:"white",color:"black"}} onClick={handleDeleteBtn} variant='contained'>Delete</Button>
             </Stack>
         </Stack>
     </div>
