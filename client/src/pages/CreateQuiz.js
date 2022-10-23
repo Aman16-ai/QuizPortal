@@ -144,7 +144,7 @@ export default function CreateQuiz() {
   }
   return (
     <div className='create-main-container' >
-     <NavBar/>
+     <NavBar loading={loading} handleUpload={handleUpload}/>
     <div className="outter-container">
       <Modal
         open={openModal}
