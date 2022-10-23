@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
 
         const data = {
             user: {
-                user: user.id
+                id: user.id
             }
         }
         const authtoken = jwt.sign(data,  process.env.JWT_SECERT)

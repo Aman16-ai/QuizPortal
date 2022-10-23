@@ -3,7 +3,7 @@ import { color } from '@mui/system'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from "../static/quizpic.png"
-
+import {CircularProgress} from '@mui/material'
 const style = {
   li: {
     marginLeft: "10px",
@@ -16,10 +16,10 @@ const style = {
     color: "white"
   }
 }
-export default function
-  NavBar() {
-    const handleUpload = ()=> {
-
+export default function NavBar(props) {
+    const {handleUpload,loading} = props
+    const handleUploadBtn = ()=> {
+      handleUpload()
     }
   return (
     <div style={{ width: "100vw", height: "12vh", display: "flex", backgroundColor: '#1b263b', boxShadow: "0px 4px 16px rgba(0, 0, 0, 0.13);" }}>
@@ -33,7 +33,7 @@ export default function
               <Link style={style.link} to="/register">DashBoard</Link></li>
           </ul>
           <div style={{ display: "flex",justifyContent:"flex-end", width: "40vw", height: "auto", marginLeft: "28vw" }} className="btns">
-            <Button onClick={handleUpload} style={{ width: "100px", height: "40px", marginLeft: "110px" }} color="success" variant='contained'>Upload</Button>
+            <Button onClick={handleUploadBtn} style={{ width: "100px", height: "40px", marginLeft: "110px" }} color="success" variant='contained'>{loading?<CircularProgress style={{position:"absolute",color:"white"}}/>:"upload"}</Button>
 
             <Button style={{ width: "100px", height: "40px",marginLeft:"20px" }} color="error" variant='contained'>Reset</Button>
 
